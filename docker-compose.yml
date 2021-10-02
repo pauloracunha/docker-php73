@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   www:
-    image: pauloracunha/lamp:2.1.0-apache-php-7.3
+    image: pauloracunha/lamp:2.1.0-php-7.4
     expose:
       - "80/tcp"
       - "443/tcp"
@@ -11,7 +11,7 @@ services:
     environment:
       ENVIRONMENT: development
     volumes:
-      - ../dev-system:/var/www/html
+      - ../next-system:/var/www/html
       - ./logs/apache2:/var/log/apache2
       - ./apache2/vhosts:/etc/apache2/from-host
       - ./apache2/certs:/etc/apache2/ssl/from-host

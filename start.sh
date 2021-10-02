@@ -18,7 +18,7 @@ if [ ! -f "$FILE" ] ; then
     [req_distinguished_name]
     CN = *.$DOMAIN
     [v3_req]
-    keyUsage = keyEncipherment, dataEncipherment
+    keyUsage = nonRepudiation, digitalSignature, keyEncipherment
     extendedKeyUsage = serverAuth
     subjectAltName = @alt_names
     [alt_names]
