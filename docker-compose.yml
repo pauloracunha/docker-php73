@@ -11,7 +11,7 @@ services:
     environment:
       ENVIRONMENT: development
     volumes:
-      - ../next-system:/var/www/html
+      - ../dev-system:/var/www/html
       - ./logs/apache2:/var/log/apache2
       - ./apache2/vhosts:/etc/apache2/from-host
       - ./apache2/certs:/etc/apache2/ssl/from-host
