@@ -1,6 +1,6 @@
-# Docker PHP 7.3 Laravel
+# Docker PHP 7.4 Laravel
 ## Descrição
-Docker compose configurado com imagem PHP 7.3, Apache 2 e MySQL 8 para trabalhar com Laravel ou Lumen.
+Docker compose configurado com imagem PHP 7.4, Apache 2 e MySQL 8 para trabalhar com Laravel ou Lumen.
 
 ## Setup
 Após o clone deste projeto, na mesma pasta, faça clone do projeto Laravel ou Lumen que será colocado dentro do docker da seguinte forma:
