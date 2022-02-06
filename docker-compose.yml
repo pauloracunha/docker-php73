@@ -1,17 +1,20 @@
 version: '3.1'
 services:
-  www:
+  api:
+    container_name: next-api
     image: pauloracunha/lamp:2.1.0-php-7.4
     expose:
-      - "80/tcp"
-      - "443/tcp"
+      - "3000/tcp"
+      - "4430/tcp"
     ports:
-      - "80:80"
-      - "443:443"
+      - "3000:80"
+      - "4430:443"
+    networks:
+      - ntw
     environment:
       ENVIRONMENT: development
     volumes:
-      - ../dev-system:/var/www/html
+      - ../next-system:/var/www/html/api
       - ./logs/apache2:/var/log/apache2
       - ./apache2/vhosts:/etc/apache2/from-host
       - ./apache2/certs:/etc/apache2/ssl/from-host
@@ -19,6 +22,20 @@ services:
       - db
     links:
       - db
+  app:
+    container_name: next-app
+    build: ../next-app/
+    volumes:
+        - ../next-app/:/home/node/app/
+    ports:
+      - "80:4000"
+    restart: unless-stopped
+    networks:
+      - ntw
+    depends_on:
+      - api
+    links:
+      - api
   db:
     image: mysql:8
     expose:
@@ -31,3 +48,9 @@ services:
     volumes:
       - ./datadir:/var/lib/mysql
       - ./initdb:/docker-entrypoint-initdb.d
+    networks:
+      - ntw
+
+networks:
+  ntw:
+    name: ntw
